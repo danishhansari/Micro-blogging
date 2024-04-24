@@ -3,13 +3,6 @@ import expressSession from "express-session";
 import { initialize, session } from "./library/auth.js";
 import googleAuthRoute from "./route/index.js";
 import { connectDB } from "./library/db.js";
-// import RedisStore from "connect-redis";
-// import redis from "redis";
-
-// const redisClient = redis.createClient(redis.options);
-// redisClient.on("ready", () => {
-//   console.log("connected to redis");
-// });
 
 export const app = express();
 
@@ -21,9 +14,6 @@ app.use(
     name: "sessionId",
     resave: false,
     saveUninitialized: false,
-    // store: new RedisStore({
-    //   client: redisClient,
-    // }),
   })
 );
 app.use("/", googleAuthRoute);
