@@ -1,5 +1,4 @@
 import express, { json } from "express";
-import expressSession from "express-session";
 import { initialize, session } from "./library/auth.js";
 import googleAuthRoute from "./route/index.js";
 import { connectDB } from "./library/db.js";
@@ -8,14 +7,6 @@ export const app = express();
 
 app.use(json());
 
-app.use(
-  expressSession({
-    secret: "This is secret",
-    name: "sessionId",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
 app.use("/", googleAuthRoute);
 app.use(initialize);
 app.use(session);
