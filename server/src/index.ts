@@ -1,7 +1,7 @@
 import express, { json, urlencoded } from "express";
 import { connectToDatabase } from "./config/db";
 import { PORT, NODE_ENV, APP_ORIGIN } from "./constant/env";
-import { errorHandler } from "./middleware/errorHandle";
+import { errorHandler } from "./middleware/errorHandler";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { OK } from "./constant/http";
