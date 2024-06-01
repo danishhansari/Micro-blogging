@@ -1,6 +1,10 @@
 import bcrypt from "bcrypt";
-const hashValue = async (value: string, saltRound?: number) => {
-  await bcrypt.hash(value, saltRound || 10);
+
+const hashValue = async (
+  value: string,
+  saltRound?: number
+): Promise<string> => {
+  return bcrypt.hash(value, saltRound || 10);
 };
 
 const compareValue = async (value: string, hashedValue: string) => {

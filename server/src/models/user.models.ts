@@ -1,7 +1,7 @@
-import mongoose, { Schema, model } from "mongoose";
+import { Schema, model, Document } from "mongoose";
 import { compareValue, hashValue } from "../utils/bcrypt";
 
-export interface UserDocument extends mongoose.Document {
+export interface UserDocument extends Document {
   email: string;
   password: string;
   verified: boolean;
@@ -29,6 +29,5 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.comparePassword = async function (val: string) {
   return compareValue(val, this.password);
 };
-
-const User = model<UserDocument>("User", userSchema);
-export default User;
+const UserModel = model<UserDocument>("User", userSchema);
+export default UserModel;
