@@ -1,8 +1,10 @@
+import { JWT_REFRESH_SECRET, JWT_SECRET } from "../constant/env";
 import VerificationCodeType from "../constant/verificationCodeType";
 import SessionModel from "../models/session.models";
 import UserModel from "../models/user.models";
 import verificationCodeModel from "../models/verificationCode.models";
 import { oneYearFromNow } from "../utils/date";
+import jwt from "jsonwebtoken";
 
 export type CreateAccountParams = {
   email: string;
@@ -40,7 +42,23 @@ const createAccount = async (data: CreateAccountParams) => {
   });
 
   // sign access token && refresh token
+  const refreshToken = jwt.sign(
+    { sessionId: session._id },
+    JWT_REFRESH_SECRET,
+    { audience: ["user"], expiresIn: "30d" }
+  );
+
+  const accessToken = jwt.sign(
+    { userId: user._id, sessionId: session._id },
+    JWT_SECRET,
+    {
+      audience: ["user"],
+      expiresIn: "15m",
+    }
+  );
+
   // return user
+  return { user, accessToken, refreshToken };
 };
 
 export { createAccount };

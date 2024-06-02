@@ -1,5 +1,9 @@
-const oneYearFromNow = () => new Date(Date.now() + 365 * 24 * 60 * 60 * 1000);
+const oneYearFromNow = (): Date =>
+  new Date(Date.now() + 365 * 24 * 60 * 60 * 1000);
 
-const thirtyDaysFromNow = () => new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+const thirtyDaysFromNow = (): Date =>
+  new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
 
-export { oneYearFromNow, thirtyDaysFromNow };
+const fifteenMinuteFromNow = (): Date => new Date(Date.now() + 15 * 60 * 1000);
+
+export { oneYearFromNow, thirtyDaysFromNow, fifteenMinuteFromNow };
