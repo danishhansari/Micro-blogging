@@ -40,4 +40,9 @@ const clearAuthCookies = (res: Response) =>
     .clearCookie("accessToken")
     .clearCookie("refreshToken", { path: REFRESH_PATH });
 
-export { setAuthCookies, clearAuthCookies };
+export {
+  setAuthCookies,
+  clearAuthCookies,
+  getAccessTokenCookieOptions,
+  getRefreshTokenCookieOptions,
+};
