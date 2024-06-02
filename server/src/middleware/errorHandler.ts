@@ -19,14 +19,12 @@ const handleAppError = (res: Response, error: AppError) => {
 };
 
 const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
-  console.log(`PATH ${req.path}`, error);
+  if (req.path === REFRESH_PATH) {
+    clearAuthCookies(res);
+  }
 
   if (error instanceof z.ZodError) {
     return handleZodError(res, error);
-  }
-
-  if (req.path === REFRESH_PATH) {
-    clearAuthCookies(res);
   }
 
   if (error instanceof AppError) {
