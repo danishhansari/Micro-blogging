@@ -8,6 +8,7 @@ import { OK } from "./constant/http";
 import authRoutes from "./routes/auth.route";
 import { authenticate } from "./middleware/authenticate";
 import userRoutes from "./routes/user.route";
+import sessionRoute from "./routes/session.route";
 
 const app = express();
 app.use(cookieParser());
@@ -26,6 +27,7 @@ app.get("/", (req, res, next) => {
 
 app.use("/auth", authRoutes);
 app.use("/user", authenticate, userRoutes);
+app.use("/sessions", authenticate, sessionRoute);
 
 app.use(errorHandler);
 
