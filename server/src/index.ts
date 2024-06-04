@@ -6,6 +6,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { OK } from "./constant/http";
 import authRoutes from "./routes/auth.route";
+import { authenticate } from "./middleware/authenticate";
+import userRoutes from "./routes/user.route";
 
 const app = express();
 app.use(cookieParser());
@@ -23,6 +25,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/user", authenticate, userRoutes);
 
 app.use(errorHandler);
 
