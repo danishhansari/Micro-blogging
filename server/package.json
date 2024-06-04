@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --env-file ./.env --files src/index.ts"
+    "dev": "ts-node-dev --env-file ./.env --files src/index.ts index.d.ts"
   },
   "keywords": [],
   "author": "Danish",
