@@ -9,3 +9,4 @@ export const sendPasswordResetEmail = async (email) =>
 export const resetPassword = async ({ verificationCode, password }) =>
   API.post("/auth/password/reset", { verificationCode, password });
 export const getUser = async () => API.get("/auth/user");
+export const logout = async () => API.get("/auth/logout");
