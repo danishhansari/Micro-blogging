@@ -8,7 +8,7 @@ import {
   Link as ChakraLink,
 } from "@chakra-ui/react";
 import { Link, useSearchParams } from "react-router-dom";
-import ResetPasswordForm from "./ResetPasswordForm";
+import ResetPasswordForm from "../components/ResetPasswordForm";
 
 const ResetPassword = () => {
   const [searchParams] = useSearchParams();
