@@ -24,7 +24,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const {
-    mutate: signup,
+    mutate: createAccount,
     isPending,
     isError,
     error,
@@ -45,7 +45,7 @@ const Register = () => {
           <Box rounded={"lg"} bg={"gray.700"} boxShadow={"lg"} p={8}>
             {isError && (
               <Box mb={3} color="red.400">
-                {error?.message || "An error occured"}
+                {error?.message ?? "An error occured"}
               </Box>
             )}
             <Stack spacing={4}>
@@ -69,9 +69,17 @@ const Register = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   onKeyDown={(e) =>
                     e.key === "Enter" &&
-                    signup({ email, password, confirmPassword })
+                    createAccount({ email, password, confirmPassword })
                   }
-                ></Input>
+                />
+                <Text
+                  color="text.muted"
+                  fontSize={"xs"}
+                  textAlign={"left"}
+                  mt={2}
+                >
+                  Must be atleast 6 character long.
+                </Text>
               </FormControl>
               <FormControl id="confirmPassword">
                 <FormLabel>Confirm Password</FormLabel>
@@ -83,7 +91,7 @@ const Register = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   onKeyDown={(e) =>
                     e.key === "Enter" &&
-                    signup({ email, password, confirmPassword })
+                    createAccount({ email, password, confirmPassword })
                   }
                 ></Input>
               </FormControl>
@@ -97,16 +105,20 @@ const Register = () => {
               </ChakraLink>
               <Button
                 isLoading={isPending}
-                onClick={() => register({ email, password, confirmPassword })}
+                onClick={() =>
+                  createAccount({ email, password, confirmPassword })
+                }
                 my={2}
-                isDisabled={!email || password.length < 6 || !confirmPassword}
+                isDisabled={
+                  !email || password.length < 6 || password !== confirmPassword
+                }
               >
-                Sign in
+                Create Account
               </Button>
               <Text align="center" fontSize="sm" color="text.muted">
-                Don&apos;t have an account? {""}
-                <ChakraLink as={Link} to={"/register"}>
-                  Sign up
+                Already have an account? {""}
+                <ChakraLink as={Link} to={"/login"}>
+                  Sign in
                 </ChakraLink>
               </Text>
             </Stack>
