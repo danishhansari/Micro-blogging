@@ -26,7 +26,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/auth", authRoutes);
-app.use("/user", authenticate, userRoutes);
+app.use("/auth/user", authenticate, userRoutes);
 app.use("/sessions", authenticate, sessionRoute);
 
 app.use(errorHandler);
